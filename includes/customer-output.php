@@ -1,0 +1,59 @@
+<?php session_start(); ?>
+<?php require 'header.php'; ?>
+
+<?php
+$name = htmlspecialchars($_POST['name'] ?? '', ENT_QUOTES, 'UTF-8');
+$furigana = htmlspecialchars($_POST['furigana'] ?? '', ENT_QUOTES, 'UTF-8');
+$postcode_a = htmlspecialchars($_POST['postcode_a'] ?? '', ENT_QUOTES, 'UTF-8');
+$postcode_b = htmlspecialchars($_POST['postcode_b'] ?? '', ENT_QUOTES, 'UTF-8');
+$address = htmlspecialchars($_POST['address'] ?? '', ENT_QUOTES, 'UTF-8');
+$mail = htmlspecialchars($_POST['mail'] ?? '', ENT_QUOTES, 'UTF-8');
+$password = htmlspecialchars($_POST['password'] ?? '', ENT_QUOTES, 'UTF-8');
+
+$pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts', [
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+]);
+
+// 名前が既に登録されているか確認   
+$sql = $pdo->prepare('SELECT * FROM customers WHERE name = ?');
+$sql->execute([$name]);
+
+?>
+
+<nav class="pan">
+  <ol>
+    <li><a href="index.php">TOP</a> ＞</li>
+    <li><a href="/ccdonuts/includes/login-input.php">ログイン</a> ＞</li>
+    <li><a href="/ccdonuts/includes/customer-input.php">会員登録</a> ＞</li>
+    <li><a href="/ccdonuts/includes/customer-confirm.php">入力確認</a> ＞</li>
+    <li>会員登録完了</li>
+  </ol>
+</nav>
+
+<?php
+echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
+
+
+if (empty($sql->fetchAll())) {
+    try {
+        $insert = $pdo->prepare('INSERT INTO customers (name, furigana, postcode_a, postcode_b, address, mail, password) VALUES (?, ?, ?, ?, ?, ?, ?)');
+        $insert->execute([$name, $furigana, $postcode_a, $postcode_b, $address, $mail, $password]);
+
+        echo '<div class="logform in">';
+        echo '<p>会員登録が完了いたしました。</p>';
+        echo '<p>ログインページへお進みください。</p>';
+        echo '</div>';
+    } catch (PDOException $e) {
+        echo '<p class="error">エラー: ' . $e->getMessage() . '</p>';
+    }
+} else {
+    echo '<div class="logform in">';
+    echo '<p>既に存在するアカウントです。</p>';
+    echo '</div>';
+}
+?>
+
+<p class="toCus togo"><a href="">クレジットカード登録へすすむ</a></p>
+<p class="toCus togo"><a href="">購入確認ページへすすむ</a></p>
+
+<?php require 'footer.php'; ?>

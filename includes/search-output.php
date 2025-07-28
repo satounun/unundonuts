@@ -6,10 +6,14 @@ require 'header.php';
 
 <?php
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts');
+    $pdo = new PDO(
+        'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
+        'ss566997_user',
+        '4290abcd'    
+    );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    exit('データベース接続エラー: ' . $e->getMessage());
+    exit('DB接続失敗: ' . $e->getMessage());
 }
 
 // 検索ワード取得
@@ -71,15 +75,18 @@ $imageMap = [
                     </a>
                 </div>
                 <div class="detail">
-                    <form action="cart-insert.php" method="post" class="dform">
+                    <form action="includes/cart-insert.php" method="post" class="dform">
                         <h2><?= htmlspecialchars($product['name']) ?></h2>
                         <div class="intr"><p><?= nl2br(htmlspecialchars($product['introduction'])) ?></p></div>
                         <p class="red">税込 ￥<?= number_format($product['price']) ?></p>
                         <div class="fav">
                             <input type="number" name="count" min="1"><span>個</span>
-                            <input type="hidden" name="id" value="<?= $product['id'] ?>">
-                            <input type="hidden" name="name" value="<?= htmlspecialchars($product['name']) ?>">
-                            <input type="hidden" name="price" value="<?= $product['price'] ?>">
+
+                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <input type="hidden" name="count" value="1">   
+                             
                             <p class="toCart"><input type="submit" value="カートに入れる"></p>
                             <a href="favorite-insert.php?id=<?= $product['id'] ?>"><img src="images/donuts/favorite.svg" alt=""></a>
                         </div>

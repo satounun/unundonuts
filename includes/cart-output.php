@@ -3,9 +3,12 @@ session_start();
 $page_title = '購入完了';
 require 'header.php';
 
-$pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+$pdo = new PDO(
+    'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
+    'ss566997_user',
+    '4290abcd'    
+);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // セッションのカート情報を取得
 $cart_key = isset($_SESSION['customer']) ? 'product_' . $_SESSION['customer']['id'] : 'product';

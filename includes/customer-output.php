@@ -13,9 +13,12 @@ $address = htmlspecialchars($_POST['address'] ?? '', ENT_QUOTES, 'UTF-8');
 $mail = htmlspecialchars($_POST['mail'] ?? '', ENT_QUOTES, 'UTF-8');
 $password = htmlspecialchars($_POST['password'] ?? '', ENT_QUOTES, 'UTF-8');
 
-$pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+$pdo = new PDO(
+    'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
+    'ss566997_user',
+    '4290abcd'    
+);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // 名前が既に登録されているか確認   
 $sql = $pdo->prepare('SELECT * FROM customers WHERE name = ?');

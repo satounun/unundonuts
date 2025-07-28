@@ -16,7 +16,12 @@ require 'header.php';
 
 <?php
 unset($_SESSION['customer']);
-$pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts');
+$pdo = new PDO(
+    'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
+    'ss566997_user',
+    '4290abcd'    
+);
+?>
 $sql = $pdo->prepare('select * from customers where mail=? and password=?');
 $sql->execute([$_REQUEST['mail'], $_REQUEST['password']]);
 foreach ($sql as $row) {

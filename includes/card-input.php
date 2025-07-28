@@ -35,6 +35,7 @@ if (isset($_SESSION['customer'])) {
 
 <div class="h2"><h2>カード情報登録</h2></div>
 <form action="includes/card-confirm.php" method="post" class="logform cinfo ccard">
+    <p class="caution">当サイトは模擬サイトですので、実際のクレジットカード情報は登録しないでください。</p>
     <p>お名前<span class="require">（必須）</span></p>
     <p><input type="text" name="name" placeholder="山田花子" required></p>
     <p>カード番号<span class="require">（必須）</span></p>

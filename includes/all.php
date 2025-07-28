@@ -1,7 +1,11 @@
 <?php session_start(); ?>
 <?php
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts');
+    $pdo = new PDO(
+        'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
+        'ss566997_user',
+        '4290abcd'    
+    );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     exit('DB接続失敗: ' . $e->getMessage());

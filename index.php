@@ -1,8 +1,11 @@
 <?php session_start(); ?>
 <?php
-// DB接続（PDO）
 try {
-    $pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts');
+    $pdo = new PDO(
+        'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
+        'ss566997_user',
+        '4290abcd'    
+    );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     exit('DB接続失敗: ' . $e->getMessage());
@@ -74,7 +77,7 @@ try {
             if (!$product) continue;
             $image = $imageMap[$name] ?? 'images/donuts/default.png';
             ?>
-            <form>
+            <form action="/ccdonuts/includes/cart-insert.php" method="post">
                 <div class="r<?php echo $rank; ?> num">
                     <p class="rk"><?php echo $rank; ?></p>
                     <a href="/ccdonuts/includes/detail.php?id=<?php echo $rank; ?>">
@@ -82,6 +85,12 @@ try {
                     </a>
                     <p class="dname"><?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?></p>
                     <p class="red">税込み ￥<?php echo number_format($product['price']); ?></p>
+
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?>">
+                    <input type="hidden" name="count" value="1">    
+
                     <p class="toCart"><input type="submit" value="カートに入れる"></p>
                 </div>
             </form>

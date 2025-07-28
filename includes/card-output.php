@@ -12,9 +12,12 @@ $card_m = htmlspecialchars($_POST['card_m'] ?? '', ENT_QUOTES, 'UTF-8');
 $card_y = htmlspecialchars($_POST['card_y'] ?? '', ENT_QUOTES, 'UTF-8');
 $card_cvv = htmlspecialchars($_POST['card_cvv'] ?? '', ENT_QUOTES, 'UTF-8');
 
-$pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts', [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-]);
+$pdo = new PDO(
+    'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
+    'ss566997_user',
+    '4290abcd'    
+);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 ?>
 
 <nav class="pan">

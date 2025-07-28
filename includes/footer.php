@@ -21,7 +21,7 @@
     </div>
     <ul>
         <li><a href="index.php">TOP</a></li>
-        <li><a href="">商品一覧</a></li>
+        <li><a href="includes/all.php">商品一覧</a></li>
         <li><a href="">よくある質問</a></li>
         <li><a href="">問い合わせ</a></li>
         <li><a href="">当サイトのポリシー</a></li>

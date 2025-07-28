@@ -6,6 +6,7 @@ $page_title = isset($page_title) ? $page_title : '';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
     <title>C.C.Donuts<?= $page_title ? ' | ' . htmlspecialchars($page_title) : '' ?></title>
     <base href="/ccdonuts/">
     <link rel="stylesheet" href="/ccdonuts/common/reset.css">

@@ -3,8 +3,18 @@
 $page_title = '商品詳細';
 require 'header.php';
 ?>
+
 <?php
-$pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts');
+try {
+    $pdo = new PDO(
+        'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
+        'ss566997_user',
+        '4290abcd'    
+    );
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    exit('DB接続失敗: ' . $e->getMessage());
+}
 $sql = $pdo->prepare('select * from products where id=?');
 $sql->execute([$_REQUEST['id']]);
 $product = $sql->fetch();
@@ -44,7 +54,7 @@ $imagePath = isset($imageMap[$product['name']]) ? $imageMap[$product['name']] : 
 echo '<div class="detailWrap">';
 echo '<div class="dimg"><img src="' . htmlspecialchars($imagePath) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-image"></div>';
 echo '<div class="detail">';
-echo '<form action="cart-insert.php" method="post" class="dform">';
+echo '<form action="includes/cart-insert.php" method="post" class="dform">';
 echo '<h2>' . htmlspecialchars($product['name']) . '</h2>';
 echo '<div class="intr"><p>' . nl2br(htmlspecialchars($product['introduction'])) . '</p></div>';
 echo '<p class="red">税込 ￥' . number_format($product['price']) . '</p>'; 

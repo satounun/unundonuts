@@ -1,5 +1,8 @@
 <?php session_start(); ?>
-<?php require 'header.php'; ?>
+<?php
+$page_title = 'カード情報';
+require 'header.php';
+?>
 
 <nav class="pan">
   <ol>
@@ -10,7 +13,11 @@
   </ol>
 </nav>
 <?php
-echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
+if (isset($_SESSION['customer'])) {
+    echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
+} else {
+    echo '<p class="guest">ようこそ、ゲスト様</p>';
+}
 ?>
 
 <?php
@@ -27,19 +34,19 @@ if (isset($_SESSION['customer'])) {
 ?>
 
 <div class="h2"><h2>カード情報登録</h2></div>
-<form action="includes/card-confirm.php" method="post" class="logform cinfo">
+<form action="includes/card-confirm.php" method="post" class="logform cinfo ccard">
     <p>お名前<span class="require">（必須）</span></p>
     <p><input type="text" name="name" placeholder="山田花子" required></p>
     <p>カード番号<span class="require">（必須）</span></p>
     <p class="reqred">任意の12桁の数字を入力してください。</p>
     <p><input type="text" name="card_number" pattern="\d{12}" placeholder="12456789123" required></p>
     <p>カード会社<span class="require">（必須）</span></p>
-    <p><input type="radio" name="card_company" value="ABC" checked>ABC
-      <input type="radio" name="card_company" value="PHP">PHP
-      <input type="radio" name="card_company" value="XYZ">XYZ</p>
+    <p class="radio"><input type="radio" name="card_company" value="ABC" checked><span>ABC</span>
+      <input type="radio" name="card_company" value="PHP"><span>PHP</span>
+      <input type="radio" name="card_company" value="XYZ"><span>XYZ</span></p>
     <p>有効期限<span class="require">（必須）</span></p>
-    <p><input type="text" name="card_m" placeholder="1" required>月</p>
-    <p><input type="text" name="card_y" placeholder="1" required>年</p>
+    <p class="my"><input type="text" name="card_m" placeholder="1" required>月</p>
+    <p class="my"><input type="text" name="card_y" placeholder="1" required>年</p>
     <p>セキュリティコード<span class="require">（必須）</span></p>
     <p class="reqred">任意の6桁の数字を入力してください。</p>
     <p><input type="text" name="card_cvv" pattern="\d{6}" placeholder="123456" required></p>

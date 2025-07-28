@@ -1,5 +1,8 @@
 <?php session_start(); ?>
-<?php require 'header.php'; ?>
+<?php
+$page_title = '入力確認';
+require 'header.php';
+?>
 
 <nav class="pan">
   <ol>
@@ -11,7 +14,11 @@
 </nav>
 
 <?php
-echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
+if (isset($_SESSION['customer'])) {
+    echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
+} else {
+    echo '<p class="guest">ようこそ、ゲスト様</p>';
+}
 ?>
 
 <?php
@@ -27,6 +34,9 @@ $password = htmlspecialchars($_POST['password'] ?? '', ENT_QUOTES, 'UTF-8');
 $password2 = htmlspecialchars($_POST['password2'] ?? '', ENT_QUOTES, 'UTF-8');
 
 $errors = [];
+if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+    $errors[] = '正しいメールアドレスの形式で入力してください。';
+}
 if ($mail !== $mail2) {
     $errors[] = 'メールアドレスが一致しません。';
 }

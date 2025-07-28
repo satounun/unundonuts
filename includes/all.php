@@ -8,18 +8,15 @@ try {
 }
 ?>
 
-<?php require 'header.php'; ?>
+<?php
+$page_title = '商品一覧';
+require 'header.php';
+?>
 
 <nav class="pan">
-  <ol itemscope itemtype="http://schema.org/BreadcrumbList">
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-      <a itemprop="item" href="../index.php"><span itemprop="name">TOP</span></a>
-      <meta itemprop="position" content="1" /><span>＞</span>
-    </li>
-    <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-      <span itemprop="name">商品一覧</span>
-      <meta itemprop="position" content="2" />
-    </li>
+  <ol>
+    <li><a href="../index.php">TOP</a>＞</li>
+    <li>商品一覧</li>
   </ol>
 </nav>
 
@@ -71,13 +68,19 @@ foreach ($products as $product) {
         if (!$product) continue;
         $image = $imageMap[$name] ?? 'images/donuts/default.png';
         ?>
-        <form>
+        <form action="/ccdonuts/includes/cart-insert.php" method="post">
             <div class="r<?php echo $num; ?> num">
             <a href="/ccdonuts/includes/detail.php?id=<?php echo $num; ?>">
                     <img src="<?php echo $image; ?>" alt="<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>">
                 </a>
                 <p class="dname"><?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?></p>
                 <p class="red">税込み ￥<?php echo number_format($product['price']); ?></p>
+
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?>">
+                <input type="hidden" name="count" value="1">    
+
                 <p class="toCart"><input type="submit" value="カートに入れる"></p>
             </div>
         </form>
@@ -126,13 +129,19 @@ foreach ($products as $product) {
         if (!$product) continue;
         $image = $imageMap[$name] ?? 'images/donuts/default.png';
         ?>
-        <form>
+        <form action="/ccdonuts/includes/cart-insert.php" method="post">
             <div class="r<?php echo $num; ?> num">
             <a href="/ccdonuts/includes/detail.php?id=<?php echo $num; ?>">
                     <img src="<?php echo $image; ?>" alt="<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>">
                 </a>
                 <p class="dname"><?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?></p>
                 <p class="red">税込み ￥<?php echo number_format($product['price']); ?></p>
+
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?>">
+                <input type="hidden" name="count" value="1">    
+                
                 <p class="toCart"><input type="submit" value="カートに入れる"></p>
             </div>
         </form>

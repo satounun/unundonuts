@@ -1,28 +1,18 @@
 <?php session_start(); ?>
-<?php require 'header.php'; ?>
+<?php
+$page_title = 'ログイン完了';
+require 'header.php';
+?>
 
 <nav class="pan">
-  <ol itemscope itemtype="">
-    <li itemprop="itemListElement" itemscope itemtype="">
-      <a itemprop="item" href="index.php"><span itemprop="name">TOP</span></a>
-      <meta itemprop="position" content="1" /><span>＞</span>
-    </li>
-    <li itemprop="itemListElement" itemscope itemtype="">
-      <a itemprop="item" href="includes/login-input.php"><span itemprop="name">ログイン</span></a>
-      <meta itemprop="position" content="1" /><span>＞</span>
-    </li>
-    <li itemprop="itemListElement" itemscope itemtype="">
-      <span itemprop="name">ログイン完了</span>
-      <meta itemprop="position" content="2" />
-    </li>
+  <ol>
+    <li><a href="index.php">TOP</a>＞ </li>
+    <li>
+      <a href="includes/login-input.php">ログイン</a>＞ </li>
+    <li>ログイン完了</li>
   </ol>
 </nav>
 
-<?php
-echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
-?>
-
-<div class="h2"><h2>ログイン完了</h2></div>
 
 <?php
 unset($_SESSION['customer']);
@@ -35,7 +25,10 @@ foreach ($sql as $row) {
         'address'=>$row['address'], 'password'=>$row['password']
     ];
 }
+
 if (isset($_SESSION['customer'])) {
+    echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
+    echo '<div class="h2"><h2>ログイン完了</h2></div>';
     echo '<div class="logform in">';
     echo '<p>ログインが完了しました。</p>';
     echo '<p>引き続きお楽しみください。</p>';
@@ -47,7 +40,8 @@ if (isset($_SESSION['customer'])) {
 }
 ?>
 
-<p class="toCus togo"><a href="">購入確認ページへすすむ</a></p>
+<p class="toCus togo"><a href="/ccdonuts/includes/logout-input.php">ログアウトはこちら</a></p>
+<p class="toCus togo"><a href="includes/cart-confirm.php">購入確認ページへすすむ</a></p>
 <p class="toCus togo"><a href="index.php">TOPページへもどる</a></p>
 
 <?php require 'footer.php'; ?>

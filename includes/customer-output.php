@@ -1,5 +1,8 @@
 <?php session_start(); ?>
-<?php require 'header.php'; ?>
+<?php
+$page_title = '会員登録完了';
+require 'header.php';
+?>
 
 <?php
 $name = htmlspecialchars($_POST['name'] ?? '', ENT_QUOTES, 'UTF-8');
@@ -31,14 +34,18 @@ $sql->execute([$name]);
 </nav>
 
 <?php
-echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
-
-
 if (empty($sql->fetchAll())) {
     try {
         $insert = $pdo->prepare('INSERT INTO customers (name, furigana, postcode_a, postcode_b, address, mail, password) VALUES (?, ?, ?, ?, ?, ?, ?)');
         $insert->execute([$name, $furigana, $postcode_a, $postcode_b, $address, $mail, $password]);
 
+        $_SESSION['customer'] = [
+            'id' => $pdo->lastInsertId(),
+            'name' => $name
+        ];
+
+        echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
+        echo '<div class="h2"><h2 class="h2">会員登録完了</h2></div>';
         echo '<div class="logform in">';
         echo '<p>会員登録が完了いたしました。</p>';
         echo '<p>ログインページへお進みください。</p>';
@@ -47,13 +54,14 @@ if (empty($sql->fetchAll())) {
         echo '<p class="error">エラー: ' . $e->getMessage() . '</p>';
     }
 } else {
+    echo '<p class="guest">ようこそ、', htmlspecialchars($_SESSION['customer']['name'], ENT_QUOTES, 'UTF-8'), '様</p>';
     echo '<div class="logform in">';
     echo '<p>既に存在するアカウントです。</p>';
     echo '</div>';
 }
 ?>
 
-<p class="toCus togo"><a href="">クレジットカード登録へすすむ</a></p>
+<p class="toCus togo"><a href="/ccdonuts/includes/card-input.php">クレジットカード登録へすすむ</a></p>
 <p class="toCus togo"><a href="">購入確認ページへすすむ</a></p>
 
 <?php require 'footer.php'; ?>

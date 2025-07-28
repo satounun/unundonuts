@@ -1,5 +1,8 @@
 <?php session_start(); ?>
-<?php require 'header.php'; ?>
+<?php
+$page_title = '商品詳細';
+require 'header.php';
+?>
 <?php
 $pdo = new PDO('mysql:host=localhost;dbname=ccdonuts;charset=utf8', 'ccStaff', 'ccDonuts');
 $sql = $pdo->prepare('select * from products where id=?');
@@ -8,19 +11,10 @@ $product = $sql->fetch();
 ?>
 
 <nav class="pan">
-  <ol itemscope itemtype="">
-    <li itemprop="itemListElement" itemscope itemtype="">
-      <a itemprop="item" href="ccdonuts/index.php"><span itemprop="name">TOP</span></a>
-      <meta itemprop="position" content="1" /><span>＞</span>
-    </li>
-    <li itemprop="itemListElement" itemscope itemtype="">
-      <a itemprop="item" href="/ccdonuts/includes/all.php"><span itemprop="name">商品一覧</span></a>
-      <meta itemprop="position" content="2" /><span>＞</span>
-    </li>
-    <li itemprop="itemListElement" itemscope itemtype="">
-      <span itemprop="name"><?= htmlspecialchars($product['name']) ?></span>
-      <meta itemprop="position" content="3" />
-    </li>
+  <ol>
+    <li><a href="ccdonuts/index.php">TOP</a>＞</span></li>
+    <li><a href="/ccdonuts/includes/all.php">商品一覧</a>＞</span></li>
+    <li><?= htmlspecialchars($product['name']) ?></li>
   </ol>
 </nav>
 

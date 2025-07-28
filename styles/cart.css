@@ -1,0 +1,197 @@
+.cform{
+    width: 75%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    line-height: 2;
+}
+.total{
+    margin: 80px 0;
+    text-align: center;
+    border: 2px solid #FFD233;
+    padding: 40px 0;
+}
+.totalred{
+    color: #BF0000;
+}
+.total p:last-of-type{
+    margin-bottom: 40px;
+}
+.total input{
+    font-size: 1.2rem;
+    background-color: #BF0000;
+    color: #fff;
+    padding: 10px 60px;
+}
+hr{
+    border: none;
+}
+.cart_product{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 80px;
+}
+.product_img{
+    width: 40%;
+    padding-right: 40px;
+}
+.product_detail{
+    width: 65%;
+}
+.product_img img{
+    width: 100%;
+}
+.name_product{
+    font-weight: bold;
+}
+.cart_product div .price{
+    border-top: 1px solid #E6CCB2;
+    border-bottom: 1px solid #E6CCB2;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+.calculation{
+    color: #000;
+    text-align: right;
+}
+.product_count input{
+    width: 80px;
+    border: 1px solid #7F5539;
+    padding-left: 50px;
+    margin: 15px 8px 20px;
+}
+.recalculation{
+    font-size: 1.2rem;
+    background-color: #ccc;
+    width: 90%;
+    margin-left: 10%;
+    text-align: center;
+}
+.delete button{
+    font-size: 1.2rem;
+    line-height: 1;
+    border-bottom: 1px solid #000;
+}
+.delete{
+    margin-top: 45%;
+}
+
+/* cart-firm */
+.finally{
+    font-size: 1.4rem;
+    line-height: 2;
+    width: 85%;
+    margin: 0 auto 150px;
+}
+h4{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.product_confirm{
+    border-top: 1px solid #E6CCB2;
+    border-bottom: 1px solid #E6CCB2;
+    margin-bottom: 40px;
+    padding: 15px;
+}
+.productP{
+    display: flex;
+    margin-bottom: 15px;
+}
+.productP:last-of-type{
+    margin-bottom: 0;
+}
+.productL{
+    width: 15%;
+    border-right: 2px solid #E6CCB2;
+}
+.productR{
+    width: 85%;
+    margin-left: 15px;
+    color: #000;
+}
+.product_bold{
+    font-weight: bold;
+}
+
+@media screen and (max-width:768px) {
+    .cform{
+        width: 90%;
+        font-size: 1rem;
+    }
+    .total{
+        margin: 20px 0;
+        padding: 20px 0;
+    }
+    .total p:last-of-type{
+        margin-bottom: 20px;
+    }
+    .total input{
+        font-size: 0.8rem;
+        padding: 8px 32px;
+    }
+    .cart_product{
+        display: block;
+        margin-bottom: 0;
+    }
+    .product_img{
+        width: 100%;
+        padding-right: 0px;
+    }
+    .product_detail{
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+    }
+    .cart_product div .price{
+        display: block;
+        border: none;
+    }
+    .calculation{
+        text-align: center;
+    }
+    .price p{
+        margin-bottom: 20px;
+        line-height: 1;
+    }
+    .product_count input{
+        width: 56px;
+        margin-bottom: 5px;
+        padding-left: 20px;
+    }
+    .recalculation{
+        width: 40%;
+        margin: 0 auto;
+        font-size: 0.9rem;
+        padding: 6px 0;
+    }
+    .delete{
+        margin-top: 0;
+    }
+    .delete button{
+        font-size: 0.9rem;
+    }
+
+    /* cart-confirm */
+    h4{
+        margin-bottom: 15px;
+    }
+    .finally{
+        font-size: 0.8rem;
+        margin-bottom: 100px;
+    }
+    .product_confirm{
+        margin-bottom: 20px;
+        padding: 8px;
+    }
+    .product_confirm:last-of-type{
+        margin-bottom: 50px;
+    }
+    .productL{
+        width: 25%;
+    }
+    .productR{
+        width: 75%;
+    }
+}
+

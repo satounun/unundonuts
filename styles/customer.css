@@ -1,0 +1,152 @@
+/* login-input */
+.logform{
+    width: 70%;
+    margin: 40px auto;
+    border: 2px solid #F7D1CD;
+    padding: 60px;
+    font-size: 1.2rem;
+}
+.logform p{
+    margin-bottom: 10px;
+}
+.logform input[type="text"],
+.logform input[type="email"]{
+    border: 1px solid #7F5539;
+    width: 100%;
+    line-height: 2;
+    margin-bottom: 30px;
+    padding-left: 8px;
+}
+.logform p:nth-of-type(4){
+    margin-bottom: 40px;
+}
+.tolog{
+    width: 50%;
+    background-color: #7F5539;
+    color: #fff;
+    margin: 0 auto;
+    line-height: 60px;
+    text-align: center;
+}
+.toCus{
+    margin-right: 15%;
+    text-align: right;
+    font-size: 1.2rem;
+    margin-bottom: 80px;
+}
+.reqred{
+    color: red;
+    font-size: 1rem;
+}
+.toCus1{
+    margin-bottom: 30px
+}
+
+/* login-output */
+.in{
+    text-align: center;
+}
+.in p{
+    margin-bottom: 0px;
+    line-height: 2;
+}
+.togo{
+    margin-bottom: 20px;
+}
+.togo:last-of-type{
+    margin-bottom: 80px;
+}
+
+/* logout-input */
+.in .logout{
+    width: 30%;
+    line-height: 3;
+    margin-top: 30px;
+}
+.out{
+    margin-bottom: 200px;
+}
+
+/* customer-input */
+.cinfo{
+    border: none;
+}
+.require{
+    color: red;
+}
+.cinfo p:nth-of-type(4){
+    margin-bottom: 20px;
+}
+.logform p .post1{
+    width: 20%;
+    margin-right: 5px;
+}
+.logform p .post2{
+    width: 35%;
+}
+.cinfo p:nth-last-of-type(2){
+    margin-bottom: 50px;
+}
+
+/* customer-confirm */
+.ccon{
+    margin: 0 auto 50px;
+    width: 50%;
+}
+.ccon p{
+    margin-bottom: 20px;
+}
+.answer{
+    line-height: 2.5;
+    color: black;
+    border-left: 1px solid #7F5539;
+    padding-left: 10px;
+}
+.ccon p:nth-last-of-type(2){
+    margin-bottom: 80px;
+}
+
+/* card-input */
+.ccard .radio{
+    margin: 30px 0;
+}
+.ccard .reqred{
+    margin-bottom: 20px;
+}
+.radio input{
+    width: 1rem;
+    margin-right: 10px;
+}
+.radio span{
+    display: inline-block;
+    margin-right: 10%;
+    font-size: 1.3rem;
+}
+.my{
+    width: 30%;
+    display: flex;
+    align-items: baseline;
+}
+.my input{
+    margin-right: 10px;
+}
+
+/* card-confirm */
+.cmy span{
+    margin-left: 80px;
+}
+
+@media screen and (max-width:768px) {
+    .logform{
+        width: 90%;
+        padding: 20px;
+        font-size: 1rem;
+    }
+    .toCus{
+        margin-right: 5%;
+        font-size: 1rem;
+    }
+    .reqred{
+        font-size: 0.8rem;
+    }
+}

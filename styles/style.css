@@ -1,0 +1,262 @@
+body{
+    color: #7F5539;
+}
+
+/* header */
+#top{
+    position: relative;
+    height: 112px;
+    padding-top: 20px;
+    background-color: #EDE0D4;
+}
+h1{
+    text-align: center;
+}
+h1 img{
+    width: 87px;
+}
+.three, .cart, .login{
+    position: absolute;
+}
+.three{
+    left: 5%;
+    top: 30%;
+}
+.three img{
+    width: 50px;
+}
+.cart{
+    right: 5%;
+    top: 30%;
+}
+.login{
+    right: 12%;
+    top: 30%;
+}
+.cart img, .login img{
+    height: 54px;
+}
+.headerSub{
+    background-color: #b392ac;
+    height: 64px;
+    position: relative;
+}
+.headerSub div{
+    margin-top: 12px;
+    position: absolute;
+    top: 0;
+    right: 5%;
+}
+.headerSub div input:first-of-type{
+    background-color: #d9d9d9;
+    width: 40px;
+    padding: 8px;
+    border: 2px solid#7F5539;
+}
+.headerSub div input:last-of-type{
+    background-color: #fff;
+    height: 40px;
+    border: 2px solid#7F5539;
+}
+
+/* footer */
+footer{
+    height: 448px;
+    background-color: #EDE0D4;
+}
+.fq{
+    display: flex;
+    font-size: 1rem;
+    padding-top: 20px;
+    margin-left: 10%;
+}
+.fq li{
+    line-height: 40px;
+    margin-right: 62px;
+    padding-left: 10px;
+    border-left: 1px solid #7F5539;
+}
+footer p:first-of-type{
+    margin: 64px 0 72px;
+    text-align: center;
+}
+footer p img{
+    width: 144px;
+}
+.sns{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.sns li{
+    margin-right: 40px;
+}
+.sns li:last-of-type{
+    margin-right: 0;
+}
+footer p:last-child{
+    border-top: 1px solid #7F5539;
+    line-height: 52px;
+    text-align: center;
+}
+
+/* drower */
+#wrapper.show{
+    display: block;
+}
+#nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 418px;
+    z-index: 9999; 
+    transform: translateY(-418px);
+    transition: transform 0.5s ease;  
+    background-color: rgba(127, 85, 57, 0.75);
+    padding-top: 20px;
+    color: #fff;
+}
+.navMain{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.navMain img{
+    width: 87px;
+}
+.batu{
+    position: absolute;
+    top: 8%;
+    left: 5%;
+}
+.batu img{
+    width: 54px;
+}
+#nav ul{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+#nav ul li{
+    line-height: 48px;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #fff;
+}
+#nav.show{
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+}
+.show_reverse{
+    transform: translateX(255px);
+    transition: transform 0.5s ease;
+}
+
+
+@media screen and (max-width:768px) {
+    /* header */
+    #top{
+        height: 90px;
+        padding-top: 16px;
+    }
+    h1 img{
+        width: 62px;
+    }
+    .three{
+        left: 5%;
+        top: 30%;
+    }
+    .three img{
+        width: 25px;
+    }
+    .cart{
+        right: 5%;
+        top: 30%;
+    }
+    .login{
+        right: 15%;
+        top: 30%;
+    }
+    .cart img, .login img{
+        height: 35px;
+    }
+    .headerSub{
+        background-color: #EDE0D4;
+        height: 40px;
+        text-align: center;
+        padding-bottom: 8px;
+        height: 45px;
+    }
+    .headerSub div{
+        margin-top: 0;
+        top: 0;
+        left: 4%;
+    }
+    .headerSub div input:first-of-type{
+        width: 37px;
+    }
+    .headerSub div input:last-of-type{
+        height: 37px;
+        width: 85%;
+    }
+
+    /* footer */
+    footer{
+        height: 303px;
+        position: relative;
+    }
+    .fq{
+        display: block;
+        margin-left: 5%;
+    }
+    .fq li{
+        line-height: 30px;
+        margin-right: 62px;
+        padding-left: 10px;
+        margin-bottom: 15px;
+    }
+    footer p:first-of-type{
+        position: absolute;
+        bottom: 15%;
+        right: 5%;
+        margin: 0;
+    }
+    footer p img{
+        width: 72px;
+    }
+    .sns{
+        justify-content: left;
+        margin-bottom: 78px;
+        margin-left: 15px;
+    }
+    .sns li{
+        margin-right: 30px;
+    }
+    footer p:last-child{
+        line-height: 34px;
+    }
+
+    /* drower */
+    #nav{
+        height: 488px;
+        transform: translateY(-488px);
+        padding-top: 17.2px;
+    }
+    .navMain img{
+        width: 59px;
+    }
+    .batu{
+        top: 5%;
+    }
+    .batu img{
+        width: 26px;
+    }
+    #nav ul{
+        width: 100%;
+        text-align: left;
+    }
+    #nav ul li{
+        font-size: 1rem;
+        padding-left: 15px;
+    }
+
+}

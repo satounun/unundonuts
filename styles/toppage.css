@@ -1,0 +1,142 @@
+.hero img{
+    width: 100%;
+}
+.contents1{
+    width: 85%;
+    margin: 0 auto;
+}
+.twoDonuts{
+    display: flex;
+    justify-content: space-between;
+    margin: 9% 0;
+}
+.d1, .d2{
+    width: 45%;
+}
+.d1 img, .d2 img{
+    width: 100%;
+}
+.d3{
+    margin-bottom: 9%;
+}
+.d3 img{
+    width: 100%;
+}
+.policy img{
+    width: 100%;
+}
+.rank{
+    text-align: center;
+}
+.rank p{
+    display: inline-block;
+    font-size: 32px;
+    line-height: 72px;
+    margin: 80px auto 120px;
+    border-bottom: 1px solid #FFD233;
+}
+.ranking{
+    width: 70%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    grid-template-rows: 50% 50%;
+    row-gap: 10%;
+    column-gap: 5%;
+    padding-bottom: 20%;
+}
+.ranking img{
+    width: 100%;
+}
+.num{
+    text-align: center;
+}
+.rk{
+    display: inline-block;
+    width: 60px;
+    line-height: 60px;
+    background-color: #D6CDCD;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #fff;
+}
+.r1 .rk{
+    background-color: #FFD233;
+}
+.r2 .rk{
+    background-color: #ccc;
+}
+.r3 .rk{
+    background-color: #D27C2C;
+}
+.dname{
+    text-align: left;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    margin: 20px 0;
+}
+.red{
+    color: #BF0000;
+    font-size: 1.5rem;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.toCart{
+    width: 85%;
+    background-color: #7F5539;
+    color: #fff;
+    margin: 0 auto;
+    line-height: 52px;
+}
+
+@media screen and (max-width:768px) {
+    .hero img{
+        object-fit: cover;
+    }
+    .contents1{
+        width: 90%;
+    }
+    .twoDonuts{
+        margin: 5% 0;
+    }
+    .d1, .d2{
+        width: 47%;
+    }
+    .d3{
+        margin-bottom: 5%;
+    }
+    .policy img{
+        height: 80vh;
+        object-fit: cover;
+    }
+    .rank p{
+        font-size: 20px;
+        line-height: 44px;
+        margin: 20px auto 80px;
+    }
+    .rk{
+        width: 35px;
+        line-height: 35px;
+        font-size: 1rem;
+    }
+    .ranking{
+        width: 93%;
+        grid-template-columns: 48% 48%;
+        grid-template-rows: 29% 29% 29%;
+        row-gap: 7.5%;
+        column-gap: 4%;
+        padding-bottom: 40%;
+    }
+    .dname{
+        font-size: 1rem;
+    }
+    .red{
+        font-size: 1rem;
+    }
+    .toCart{
+        line-height: 36px;
+        font-size: 0.8rem;
+        margin-bottom: 50px;
+    }
+
+}

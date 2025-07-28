@@ -1,0 +1,93 @@
+.detailWrap{
+    display: flex;
+    margin: 80px auto;
+}
+.dimg{
+    flex-basis: 50%;
+    text-align: right;
+}
+.dimg img{
+    width: 70%;
+}
+.detail{
+    flex-basis: 50%;
+}
+.dform{
+    width: 60%;
+    margin-left: 10%;
+}
+.dform h2{
+    border: none;
+    margin: 0 0 20px;
+    line-height: 1;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.intr{
+    font-size: 1.5rem;
+    line-height: 1.5;
+    border-top: 1px solid #E6CCB2;
+    border-bottom: 1px solid #E6CCB2;
+    padding: 40px 0;
+    margin-bottom: 40px;
+}
+.fav{
+    display: flex;
+}
+.fav>input{
+    width: 100px;
+    border: 1px solid #7F5539;
+    padding-left: 50px;
+}
+.fav span{
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-left: 5px;
+}
+.fav .toCart{
+    width: 55%;
+    text-align: center;
+}
+
+@media screen and (max-width:768px){
+    .detailWrap{
+        display: block;
+        margin: 20px;
+    }
+    .dimg img{
+        width: 100%;
+    }
+    .dform{
+        width: 100%;
+        margin: 20px 0;
+    }
+    .dform  h2, .intr{
+        font-size: 1rem;
+    }
+    .intr{
+        padding: 20px 0; 
+        margin-bottom: 20px;
+    }
+    .intr p{
+        width: 97%;
+        margin: 0 auto;
+    }
+    .red{
+        margin-bottom: 40px;
+    }
+    .fav{
+        margin-bottom: 60px;
+    }
+    .fav>input{
+        width: 56px;
+        height: 36px;
+    }
+    .fav span{
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+    .fav a img{
+        width: 36px;
+    }
+}

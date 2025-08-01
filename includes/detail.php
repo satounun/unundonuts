@@ -5,6 +5,11 @@ require 'header.php';
 ?>
 
 <?php
+// IDが指定されていなければ終了
+if (!isset($_REQUEST['id']) || !ctype_digit($_REQUEST['id'])) {
+    exit('不正なアクセスです（商品IDが指定されていません）。');
+}
+
 try {
     $pdo = new PDO(
         'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
@@ -12,12 +17,20 @@ try {
         '4290abcd'    
     );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // 商品取得
+    $sql = $pdo->prepare('SELECT * FROM products WHERE id = ?');
+    $sql->execute([$_REQUEST['id']]);
+    $product = $sql->fetch();
+
+    // 商品が存在しなかったら
+    if (!$product) {
+        exit('指定された商品は存在しません。');
+    }
+
 } catch (PDOException $e) {
     exit('DB接続失敗: ' . $e->getMessage());
 }
-$sql = $pdo->prepare('select * from products where id=?');
-$sql->execute([$_REQUEST['id']]);
-$product = $sql->fetch();
 ?>
 
 <nav class="pan">
@@ -52,23 +65,34 @@ $imageMap = [
 
 $imagePath = isset($imageMap[$product['name']]) ? $imageMap[$product['name']] : 'images/donuts/noimage.png';
 echo '<div class="detailWrap">';
-echo '<div class="dimg"><img src="' . htmlspecialchars($imagePath) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-image"></div>';
-echo '<div class="detail">';
-echo '<form action="includes/cart-insert.php" method="post" class="dform">';
-echo '<h2>' . htmlspecialchars($product['name']) . '</h2>';
-echo '<div class="intr"><p>' . nl2br(htmlspecialchars($product['introduction'])) . '</p></div>';
-echo '<p class="red">税込 ￥' . number_format($product['price']) . '</p>'; 
-echo '<div class="fav"><input type="number" name="count"><span>個</span>';
-echo '<p class="toCart"><input type="submit" value="カートに入れる"></p>';
-echo '<a href="favorite-insert.php?id=', $product['id'], '"><img src="images/donuts/favorite.svg" alt=""></a>';
-echo '</div>';
-echo '</form>';
-echo '</div>';
-echo '</div>';
+echo '  <div class="dimg"><img src="' . htmlspecialchars($imagePath) . '" alt="' . htmlspecialchars($product['name']) . '" class="product-image"></div>';
+echo '  <div class="detail">';
 
-echo '<input type="hidden" name="id", value="', $product['id'], '">';
-echo '<input type="hidden" name="name", value="', $product['name'], '">';
-echo '<input type="hidden" name="price", value="', $product['price'], '">';
+// カートに入れる
+echo '    <form action="includes/cart-insert.php" method="post" class="dform">';
+echo '      <h2>' . htmlspecialchars($product['name']) . '</h2>';
+echo '      <div class="intr"><p>' . nl2br(htmlspecialchars($product['introduction'])) . '</p></div>';
+echo '      <p class="red">税込 ￥' . number_format($product['price']) . '</p>'; 
+echo '      <div class="fav">';
+echo '        <input type="number" name="count" value="1" min="1"><span>個</span>';
+echo '        <input type="hidden" name="id" value="' . htmlspecialchars($product['id']) . '">';
+echo '        <input type="hidden" name="name" value="' . htmlspecialchars($product['name']) . '">';
+echo '        <input type="hidden" name="price" value="' . htmlspecialchars($product['price']) . '">';
+echo '        <p class="toCart"><input type="submit" value="カートに入れる"></p>';
+echo '    </form>';
+
+// お気に入り追加
+echo '    <form action="includes/favorite-insert.php" method="post" class="favorite-form">';
+echo '      <input type="hidden" name="id" value="' . htmlspecialchars($product['id']) . '">';
+echo '      <input type="hidden" name="name" value="' . htmlspecialchars($product['name']) . '">';
+echo '      <input type="hidden" name="price" value="' . htmlspecialchars($product['price']) . '">';
+echo '      <input type="hidden" name="count" value="1">';
+echo '      <input type="image" src="images/donuts/favorite.svg">';
+echo '      </div>';
+echo '    </form>';
+
+echo '  </div>'; 
+echo '</div>';
 ?>
 
 <?php require 'footer.php'; ?>

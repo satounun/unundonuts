@@ -37,24 +37,20 @@ try {
     <div class="rank"><p>人気ランキング</p></div>
 
     <?php
-    // ランキング順を指定
-    $rankingOrder = [
-        'CCドーナツ 当店オリジナル（5個入り）',
-        'フルーツドーナツセット（12個入り）',
-        'フルーツドーナツセット（14個入り）',
-        'チョコレートデライト（5個入り）',
-        'ベストセレクションボックス（4個入り）',
-        'ストロベリークラッシュ（5個入り）'
-    ];
-
-    // 商品名と画像の対応表
+    // 商品名と画像の対応表 
     $imageMap = [
-        'チョコレートデライト（5個入り）' => 'images/donuts/choco.png',
-        'ストロベリークラッシュ（5個入り）' => 'images/donuts/strawberry.png',
         'CCドーナツ 当店オリジナル（5個入り）' => 'images/donuts/cc.png',
+        'チョコレートデライト（5個入り）' => 'images/donuts/choco.png',
+        'キャラメルクリーム（5個入り）' => 'images/donuts/caramel.png',
+        'プレーンクラシック（5個入り）' => 'images/donuts/plene.png',
+        'サマーシトラス（5個入り）' => 'images/donuts/summer.png',
+        'ストロベリークラッシュ（5個入り）' => 'images/donuts/strawberry.png',
         'フルーツドーナツセット（12個入り）' => 'images/donuts/donuts_family1.png',
         'フルーツドーナツセット（14個入り）' => 'images/donuts/donuts_family2.png',
-        'ベストセレクションボックス（4個入り）' => 'images/donuts/besties.png'
+        'ベストセレクションボックス（4個入り）' => 'images/donuts/besties.png',
+        'チョコクラッシュボックス（7個入り）' => 'images/donuts/crush.png',
+        'クリームボックス（4個入り）' => 'images/donuts/cream4.png',
+        'クリームボックス（9個入り）' => 'images/donuts/cream9.png'
     ];
 
     // 商品データ取得
@@ -67,20 +63,34 @@ try {
     foreach ($products as $product) {
         $productMap[$product['name']] = $product;
     }
+
+    // 売上ランキング取得
+    $sql = "
+        SELECT p.name, SUM(oi.quantity) AS total_sold
+        FROM order_items oi
+        JOIN products p ON oi.product_id = p.id
+        GROUP BY oi.product_id
+        ORDER BY total_sold DESC
+        LIMIT 6
+    ";
+    $stmt = $pdo->query($sql);
+    $rankingData = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 
     <div class="ranking">
         <?php
         $rank = 1;
-        foreach ($rankingOrder as $name) {
+        foreach ($rankingData as $row):
+            $name = $row['name'];
             $product = $productMap[$name] ?? null;
             if (!$product) continue;
-            $image = $imageMap[$name] ?? 'images/donuts/default.png';
-            ?>
+
+            $image = $imageMap[$name] ?? 'images/donuts/default.png';            
+        ?>
             <form action="/ccdonuts/includes/cart-insert.php" method="post">
                 <div class="r<?php echo $rank; ?> num">
                     <p class="rk"><?php echo $rank; ?></p>
-                    <a href="/ccdonuts/includes/detail.php?id=<?php echo $rank; ?>">
+                    <a href="/ccdonuts/includes/detail.php?id=<?php echo $product['id']; ?>">
                         <img src="<?php echo $image; ?>" alt="<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>">
                     </a>
                     <p class="dname"><?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?></p>
@@ -96,7 +106,7 @@ try {
             </form>
             <?php
             $rank++;
-        }
+        endforeach;
         ?>
     </div>
 </div>

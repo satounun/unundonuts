@@ -77,7 +77,7 @@ hr{
     margin-top: 45%;
 }
 
-/* cart-firm */
+/* cart-confirm */
 .finally{
     font-size: 1.4rem;
     line-height: 2;
@@ -112,6 +112,11 @@ h4{
 }
 .product_bold{
     font-weight: bold;
+}
+
+/* favorite */
+.cform .nofav{
+    text-align: center;
 }
 
 @media screen and (max-width:768px) {

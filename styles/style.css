@@ -15,7 +15,7 @@ h1{
 h1 img{
     width: 87px;
 }
-.three, .cart, .login{
+.three, .cart, .favorite, .login{
     position: absolute;
 }
 .three{
@@ -29,8 +29,18 @@ h1 img{
     right: 5%;
     top: 30%;
 }
+.favorite{
+    right: 11%;
+    top: 35%;
+    text-align: center;
+}
+.favorite p{
+    font-size: 0.7rem;
+    font-weight: bold;
+    margin-top: 4px;
+}
 .login{
-    right: 12%;
+    right: 18%;
     top: 30%;
 }
 .cart img, .login img{
@@ -57,6 +67,51 @@ h1 img{
     background-color: #fff;
     height: 40px;
     border: 2px solid#7F5539;
+}
+.headerSub .condition-sub{
+    display: none;
+    margin-top: 50px;
+    right: -10%;
+    line-height: 2;
+    border: 1px solid #7F5539;
+    background-color: #d6cdcd;
+    padding-right: 30px;
+}
+.headerSub .condition-sub label{
+    margin-left: 20px;
+}
+.headerSub .condition-sub label input{
+    height: 20px;
+}
+.headerSub .condition-detail{
+    display: none;
+    margin-top: 83px;
+    right: -10%;
+    background-color: aliceblue;
+    line-height: 2;
+    border: 1px solid #7F5539;
+    padding: 0 20px;
+}
+.headerSub .condition-detail select option{
+    display: inline-block;
+    text-align: center;
+    padding: 0 20px;
+}
+.accordion-btn {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    font-size: 16px;
+    border: none;
+    background: none;
+}
+.accordion-btn::after {
+    content: "▼";
+    margin-left: 5px;
+    font-size: 30px;
+}
+.accordion-btn.open::after {
+    content: "▲";
 }
 
 /* footer */
@@ -172,12 +227,22 @@ footer p:last-child{
         right: 5%;
         top: 30%;
     }
+    .favorite{
+        right: 13.5%;
+        top: 31%;
+    }
     .login{
-        right: 15%;
+        right: 25%;
         top: 30%;
     }
     .cart img, .login img{
         height: 35px;
+    }
+    .favorite svg{
+        height: 20px;
+    }
+    .favorite p{
+        font-size: 0.45rem;
     }
     .headerSub{
         background-color: #EDE0D4;
@@ -196,7 +261,22 @@ footer p:last-child{
     }
     .headerSub div input:last-of-type{
         height: 37px;
-        width: 85%;
+        width: 75%;
+    }
+    .headerSub .condition-sub{
+        right: 0;
+        padding-right: 30px;
+    }
+    .headerSub .condition-sub label input[type="radio"]{
+        width: 37px;
+        height: 25px;
+    }
+    .headerSub .condition-detail{
+        right: 0;
+    }
+    .headerSub .condition-detail select option{
+        font-size: 0.7rem;
+        line-height: 1.5;
     }
 
     /* footer */

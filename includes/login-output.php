@@ -21,7 +21,7 @@ $pdo = new PDO(
     'ss566997_user',
     '4290abcd'    
 );
-?>
+
 $sql = $pdo->prepare('select * from customers where mail=? and password=?');
 $sql->execute([$_REQUEST['mail'], $_REQUEST['password']]);
 foreach ($sql as $row) {

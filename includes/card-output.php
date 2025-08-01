@@ -114,6 +114,6 @@ if (isset($_SESSION['customer'])) {
 }
 ?>
 
-<p class="toCus togo"><a href="purchase-confirm.php">購入確認ページへすすむ</a></p>
+<p class="toCus togo"><a href="includes/cart-confirm.php">購入確認ページへすすむ</a></p>
 
 <?php require 'footer.php'; ?>

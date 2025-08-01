@@ -141,6 +141,14 @@
 .cmy span{
     margin-left: 80px;
 }
+.nocard{
+    text-align: center;
+    margin: 40px 0;
+}
+.nocard p{
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
 
 @media screen and (max-width:768px) {
     .logform{
@@ -154,5 +162,8 @@
     }
     .reqred{
         font-size: 0.8rem;
+    }
+    .nocard p{
+        font-size: 0.7rem;
     }
 }

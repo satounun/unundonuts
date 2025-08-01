@@ -18,15 +18,40 @@ try {
 
 // 検索ワード取得
 $keyword = isset($_POST['keyword']) ? trim($_POST['keyword']) : '';
+$price = isset($_POST['price']) ? (int)$_POST['price'] : 0;
+$genre = isset($_POST['genre']) ? (int)$_POST['genre'] : 0;
 
+$sql = "SELECT * FROM products WHERE 1";
+$params = [];
+
+// キーワード条件
 if ($keyword !== '') {
-    $sql = $pdo->prepare("SELECT * FROM products WHERE name LIKE ? OR introduction LIKE ?");
-    $searchWord = '%' . $keyword . '%';
-    $sql->execute([$searchWord, $searchWord]);
-    $products = $sql->fetchAll();
-} else {
-    $products = [];
+    $sql .= " AND (name LIKE ? OR introduction LIKE ?)";
+    $params[] = "%$keyword%";
+    $params[] = "%$keyword%";
 }
+
+// 価格条件 金額の範囲指定
+if (!empty($_POST['price'])) {
+    $priceRange = explode('~', $_POST['price']); 
+    if (count($priceRange) === 2) {
+        $minPrice = (int)$priceRange[0];
+        $maxPrice = (int)$priceRange[1];
+        $sql .= " AND price BETWEEN ? AND ?";
+        $params[] = $minPrice;
+        $params[] = $maxPrice;
+    }
+}
+
+if ($genre > 0) {
+    $sql .= " AND genre = :genre";
+    $params[':genre'] = $genre;
+}
+
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
+$products = $stmt->fetchAll();
+
 ?>
 
 <nav class="pan">
@@ -88,9 +113,18 @@ $imageMap = [
                             <input type="hidden" name="count" value="1">   
                              
                             <p class="toCart"><input type="submit" value="カートに入れる"></p>
-                            <a href="favorite-insert.php?id=<?= $product['id'] ?>"><img src="images/donuts/favorite.svg" alt=""></a>
-                        </div>
                     </form>
+                    <form action="includes/favorite-insert.php" method="post" class="favorite-form">
+
+                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($product['id'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <input type="hidden" name="name" value="<?php echo htmlspecialchars($product['name'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <input type="hidden" name="price" value="<?php echo htmlspecialchars($product['price'], ENT_QUOTES, 'UTF-8'); ?>">
+                        <input type="hidden" name="count" value="1">  
+                         
+                        <input type="image" src="images/donuts/favorite.svg">
+                    </div>
+                    </form>
+                        </div>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -2,9 +2,9 @@
 <?php
 try {
     $pdo = new PDO(
-        'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
-        'ss566997_user',
-        '4290abcd'    
+        'mysql:---------------',
+        '-------------',
+        '-------------'    
     );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {

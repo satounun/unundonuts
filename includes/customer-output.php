@@ -14,9 +14,9 @@ $mail = htmlspecialchars($_POST['mail'] ?? '', ENT_QUOTES, 'UTF-8');
 $password = htmlspecialchars($_POST['password'] ?? '', ENT_QUOTES, 'UTF-8');
 
 $pdo = new PDO(
-    'mysql:host=localhost;dbname=ss566997_ccdonuts;charset=utf8',
-    'ss566997_user',
-    '4290abcd'    
+    'mysql:---------------',
+        '-------------',
+        '-------------'      
 );
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
